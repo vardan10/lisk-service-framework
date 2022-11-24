@@ -47,4 +47,14 @@ config.log.file = process.env.SERVICE_LOG_FILE || 'false';
 // Set docker host if running inside the container
 config.log.docker_host = process.env.DOCKER_HOST || 'local';
 
+
+// Endpoints
+config.endpoints = {};
+config.endpoints.REDIS = 'redis://localhost:6379/0';
+config.endpoints.NODE_INFO = 'https://mainnet.lisk.com/api/node/info';
+config.endpoints.BLOCK_DATA = 'https://mainnet.lisk.com/api/blocks';
+
+// Constants
+config.BLOCKS_TO_FETCH = 10000;
+
 module.exports = config;

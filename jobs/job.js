@@ -13,16 +13,22 @@
  * Removal or modification of this copyright notice is prohibited.
  *
  */
-const logger = require('lisk-service-framework').Logger();
+
+
+const {
+	fetchLatestBlocksForBalanceTransfer,
+} = require('../dataService');
 
 module.exports = [
 	{
 		name: 'job.1',
 		description: 'Generic job template',
-		schedule: '* * * * *', // Every 1 min
-		controller: () => {
-			const operationResult = (() => ([1, 2, 3, 4, 5]))();
-			logger.info(`Dummy job is done, processed ${operationResult.length} items`);
+		schedule: '*/10 * * * *', // Every 10 min
+		init: async () => {
+			await fetchLatestBlocksForBalanceTransfer();
+		},
+		controller: async () => {
+			await fetchLatestBlocksForBalanceTransfer();
 		},
 	},
 ];
